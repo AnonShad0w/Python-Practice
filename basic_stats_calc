@@ -1,0 +1,128 @@
+def stats(list_items):
+    
+    if len(list_items) <= 1:
+        print("The list length is too short")
+    else:
+        org_list_items = sorted(list_items)
+        len_list = len(org_list_items)
+        print("The sorted list is {} and the length of the list is {}".format(org_list_items, len_list))
+        
+        if len(org_list_items) == 2:
+            return
+        
+        # Median for even numbered list
+        elif len(org_list_items)%2 == 0:
+            even = len(org_list_items)//2
+            odd = len(org_list_items)//2 + 1
+            mid_point = (org_list_items[even - 1] + org_list_items[odd - 1])/2
+            print("Median = {}".format(mid_point))
+            
+            # Q1 for even 1st quartile
+            if len(org_list_items[:even])%2 == 0:
+                q1_even = len(org_list_items[:even])//2
+                q1_odd = len(org_list_items[:even])//2 + 1
+                q1 = (org_list_items[:even][q1_even - 1] + org_list_items[:even][q1_odd - 1])/2
+                print("Q1 is {}".format(q1))
+                
+            # Q3 for even 3rd quartile
+                q3_even = len(org_list_items[even:])//2
+                q3_odd = len(org_list_items[even:])//2 + 1
+                q3 = (org_list_items[even:][q3_even - 1] + org_list_items[even:][q3_odd - 1])/2
+                print("Q3 is {}".format(q3))
+
+                iqr = q3 - q1
+                print("IQR = {}".format(iqr))
+                
+                q1_outrange = q1 - 1.5*iqr
+                q3_outrange = q3 + 1.5*iqr
+                print("Outlier Range: [{}    {}]".format(q1_outrange, q3_outrange))
+                
+                mean = sum(org_list_items)/len(org_list_items)
+                print("Mean = {}".format(mean))
+                
+            # Q1 for odd 1st quartile
+            else:
+                q1 = org_list_items[:even][len(org_list_items)//4]
+                print("Q1 is {}".format(q1))
+                
+            # Q3 for odd 3rd quartile
+                q3 = org_list_items[even:][len(org_list_items)//4]
+                print("Q3 is {}".format(q3))
+            
+                iqr = q3 - q1
+                print("IQR = {}".format(iqr))
+        
+                q1_outrange = q1 - 1.5*iqr
+                q3_outrange = q3 + 1.5*iqr
+                print("Outlier Range: [{}    {}]".format(q1_outrange, q3_outrange))
+                
+                mean = sum(org_list_items)/len(org_list_items)
+                print("Mean = {}".format(mean))
+                
+            var_list = []
+            for num in org_list_items:
+                (var_list).append((num-mean)**2)
+    
+            var = sum(var_list)/(len(var_list)-1)
+            print("Variance: {:.2f}".format(var))
+            
+            std = var**(1/2)
+            print("STD: {:.2f}".format(std))
+        
+        # Median for odd numbered list
+        else:
+            odd_pos = len(org_list_items)//2
+            mid_point = org_list_items[odd_pos]
+            print("Median = {}".format(mid_point))
+            
+            # Q1 for even 1st quartile
+            if len(org_list_items[:odd_pos])%2 == 0:
+                q1_even = len(org_list_items[:odd_pos])//2
+                q1_odd = len(org_list_items[:odd_pos])//2 + 1
+                q1 = (org_list_items[:odd_pos][q1_even - 1] + org_list_items[:odd_pos][q1_odd - 1])/2
+                print("Q1 is {}".format(q1))
+                
+            # Q3 for even 3rd quartile
+                q3_even = len(org_list_items[odd_pos:])//2
+                q3_odd = len(org_list_items[odd_pos:])//2 + 1
+                q3 = (org_list_items[odd_pos:][q3_even] + org_list_items[odd_pos:][q3_odd])/2
+                print("Q3 is {}".format(q3))
+
+                iqr = q3 - q1
+                print("IQR = {}".format(iqr)) 
+                        
+                q1_outrange = q1 - 1.5*iqr
+                q3_outrange = q3 + 1.5*iqr
+                print("Outlier Range: [{}    {}]".format(q1_outrange, q3_outrange))
+                
+                mean = sum(org_list_items)/len(org_list_items)
+                print("Mean = {}".format(mean))
+                
+            # Q1 for odd 1st quartile
+            else:
+                q1 = org_list_items[:odd_pos][len(org_list_items)//4]
+                print("Q1 is {}".format(q1))
+                
+            # Q3 for odd 3rd quartile
+                q3 = org_list_items[odd_poss:][len(org_list_items)//4]
+                print("Q3 is {}".format(q3))
+                
+                iqr = q3 - q1
+                print("IQR = {}".format(iqr))
+                
+                q1_outrange = q1 - 1.5*iqr
+                q3_outrange = q3 + 1.5*iqr
+                print("Outlier Range: [{}    {}]".format(q1_outrange, q3_outrange))
+                
+                mean = sum(org_list_items)/len(org_list_items)
+                print("Mean = {}".format(mean))
+                
+            var_list = []
+            for num in org_list_items:
+                (var_list).append((num-mean)**2)
+    
+            var = sum(var_list)/(len(var_list)-1)
+            print("Variance: {:.2f}".format(var))
+            
+            std = var**(1/2)
+            print("STD: {:.2f}".format(std))
