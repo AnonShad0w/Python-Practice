@@ -1,5 +1,5 @@
 import math
-str_num = input('What number do you want the primes?: ')
+str_num = input('What number do you want the factors of?: ')
 num = int(str_num)
 factors = []
 
